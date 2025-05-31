@@ -1,65 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #1e1e2f;
-  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  background: #0e0e0e;
+  color: #00ffcc;
   display: flex;
   flex-direction: column;
   height: 100vh;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .container {
-  background: #2e2e3e;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  background: linear-gradient(145deg, #1a1a1a, #111);
+  padding: 40px;
+  border-radius: 20px;
+  border: 2px solid #00ffcc;
+  box-shadow: 0 0 20px #00ffcc44;
   text-align: center;
+  width: 90%;
+  max-width: 450px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #00ffe1;
+  text-shadow: 0 0 10px #00ffe1;
 }
 
 input {
-  width: 80%;
-  padding: 10px;
-  margin-top: 15px;
+  width: 100%;
+  padding: 12px 15px;
+  margin-top: 10px;
   border: none;
   border-radius: 8px;
+  background: #1e1e1e;
+  color: #00ffcc;
   font-size: 1rem;
+  outline: none;
+  box-shadow: inset 0 0 8px #00ffcc88;
 }
 
 .buttons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 12px;
+  margin-top: 25px;
 }
 
 button {
-  padding: 10px 20px;
-  background: #4a90e2;
-  color: #fff;
+  padding: 12px;
+  font-size: 1rem;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  background: #00ffcc;
+  color: #000;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #00ffcc88;
 }
 
 button:hover {
-  background: #357ab8;
+  background: #00ffaa;
+  box-shadow: 0 0 20px #00ffaa99;
 }
 
 button.secondary {
-  background: #34af23;
+  background: transparent;
+  color: #00ffcc;
+  border: 1px solid #00ffcc;
 }
 
 button.secondary:hover {
-  background: #2b931c;
+  background: #00ffcc11;
 }
 
 #status {
-  margin-top: 10px;
+  margin-top: 15px;
   font-size: 0.9rem;
+  color: #f0f0f0;
 }
 
 footer {
@@ -67,5 +94,6 @@ footer {
   bottom: 10px;
   text-align: center;
   width: 100%;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
+  color: #00ffcc88;
 }
