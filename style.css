@@ -1,99 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: #0e0e0e;
-  color: #00ffcc;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.container {
-  background: linear-gradient(145deg, #1a1a1a, #111);
-  padding: 40px;
-  border-radius: 20px;
-  border: 2px solid #00ffcc;
-  box-shadow: 0 0 20px #00ffcc44;
-  text-align: center;
-  width: 90%;
-  max-width: 450px;
-}
-
-h1 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #00ffe1;
-  text-shadow: 0 0 10px #00ffe1;
-}
-
-input {
+/* === Background Grid Effect === */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  padding: 12px 15px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 8px;
-  background: #1e1e1e;
-  color: #00ffcc;
-  font-size: 1rem;
-  outline: none;
-  box-shadow: inset 0 0 8px #00ffcc88;
+  height: 100%;
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 204, 0.05),
+      rgba(0, 255, 204, 0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 255, 204, 0.05),
+      rgba(0, 255, 204, 0.05) 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  z-index: -1;
+  animation: pulse 4s infinite;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 25px;
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
 }
 
-button {
-  padding: 12px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: #00ffcc;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #00ffcc88;
+/* === Loading Spinner === */
+button.loading::after {
+  content: "";
+  margin-left: 10px;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #000;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 1s linear infinite;
+  vertical-align: middle;
 }
 
-button:hover {
-  background: #00ffaa;
-  box-shadow: 0 0 20px #00ffaa99;
-}
-
-button.secondary {
-  background: transparent;
-  color: #00ffcc;
-  border: 1px solid #00ffcc;
-}
-
-button.secondary:hover {
-  background: #00ffcc11;
-}
-
-#status {
-  margin-top: 15px;
-  font-size: 0.9rem;
-  color: #f0f0f0;
-}
-
-footer {
-  position: absolute;
-  bottom: 10px;
-  text-align: center;
-  width: 100%;
-  font-size: 0.8rem;
-  color: #00ffcc88;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
