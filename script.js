@@ -13,6 +13,7 @@ function getRandomMessage(phoneNumber) {
 function sendUnbanRequest() {
   const input = document.getElementById("numberInput").value.trim();
   const status = document.getElementById("status");
+  const button = document.getElementById("requestBtn");
 
   if (!input.startsWith("+") || input.length < 10) {
     status.textContent = "Please enter a valid number with country code.";
@@ -20,9 +21,21 @@ function sendUnbanRequest() {
     return;
   }
 
-  const subject = encodeURIComponent("Request for WhatsApp Number Unban");
-  const body = encodeURIComponent(getRandomMessage(input));
-  const mailtoLink = `mailto:support@whatsapp.com?subject=${subject}&body=${body}`;
+  // Add loading state
+  button.classList.add("loading");
+  button.disabled = true;
+  status.textContent = "Generating request...";
 
-  window.location.href = mailtoLink;
+  setTimeout(() => {
+    const subject = encodeURIComponent("Request for WhatsApp Number Unban");
+    const body = encodeURIComponent(getRandomMessage(input));
+    const mailtoLink = `mailto:support@whatsapp.com?subject=${subject}&body=${body}`;
+
+    window.location.href = mailtoLink;
+
+    // Optional: reset button state after redirect
+    button.classList.remove("loading");
+    button.disabled = false;
+    status.textContent = "";
+  }, 1200); // Simulate loading delay
 }
