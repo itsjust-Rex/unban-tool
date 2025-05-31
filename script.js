@@ -1,41 +1,28 @@
-async function submitRequest() {
-  const input = document.getElementById("userInput").value.trim();
+function getRandomMessage(phoneNumber) {
+  const messages = [
+    `Hello WhatsApp Support,\n\nMy number ${phoneNumber} was recently banned. I believe this was a mistake and I kindly request a review of my account.\n\nThanks.`,
+    `Dear WhatsApp Team,\n\nPlease help me unban my number ${phoneNumber}. I use it for personal communication and I think it was banned in error.\n\nThank you.`,
+    `Hi WhatsApp,\n\nMy number ${phoneNumber} was banned, possibly due to unusual activity. I assure you I use WhatsApp responsibly. Kindly assist in restoring access.\n\nSincerely.`,
+    `WhatsApp Support,\n\nI am requesting an unban for my number ${phoneNumber}. I respect your policies and believe my ban was an error. Please help.\n\nRegards.`,
+    `To WhatsApp,\n\nPlease consider unbanning my number ${phoneNumber}. I rely on WhatsApp daily and I believe there was a misunderstanding.\n\nThank you.`
+  ];
+
+  return messages[Math.floor(Math.random() * messages.length)];
+}
+
+function sendUnbanRequest() {
+  const input = document.getElementById("numberInput").value.trim();
   const status = document.getElementById("status");
 
-  if (!input) {
-    status.textContent = "Please enter your username or ID.";
+  if (!input.startsWith("+") || input.length < 10) {
+    status.textContent = "Please enter a valid number with country code.";
     status.style.color = "orange";
     return;
   }
 
-  status.textContent = "Sending request...";
-  status.style.color = "white";
+  const subject = encodeURIComponent("Request for WhatsApp Number Unban");
+  const body = encodeURIComponent(getRandomMessage(input));
+  const mailtoLink = `mailto:support@whatsapp.com?subject=${subject}&body=${body}`;
 
-  const botToken = "8067615974:AAFfcTQS_vgM4twu5S3xL6V-Q7uquwci0S0";
-  const chatId = "6143932633";
-  const message = `📢 *Unban Request*\n\n🆔 *User:* \`${input}\``;
-
-  try {
-    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: "Markdown"
-      })
-    });
-
-    if (response.ok) {
-      status.textContent = "Request sent successfully!";
-      status.style.color = "lightgreen";
-      document.getElementById("userInput").value = "";
-    } else {
-      status.textContent = "Failed to send request. Try again.";
-      status.style.color = "red";
-    }
-  } catch (error) {
-    status.textContent = "Error sending request.";
-    status.style.color = "red";
-  }
+  window.location.href = mailtoLink;
 }
